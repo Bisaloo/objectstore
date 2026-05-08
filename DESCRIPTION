@@ -1,0 +1,22 @@
+Package: objectstore
+Title: Object Store Interface
+Version: 0.0.0.9000
+Authors@R: 
+    person("Hugo", "Gruson", , "hugo.gruson+R@normalesup.org", role = c("aut", "cre"))
+Description: A unified interface to object stores, inspired by the Zarr V3 specification.
+    A set of S7 classes and methods to interact with object stores, such as the local 
+    filesystem or AWS S3.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Depends: 
+    R (>= 4.1),
+    S7
+Imports: 
+    fs,
+    paws.storage
+Config/roxygen2/version: 8.0.0
+Suggests: 
+    testthat (>= 3.0.0),
+    withr
+Config/testthat/edition: 3
