@@ -35,6 +35,11 @@ method(store_get, FilesystemStore) <- function(store, key) {
   readBin(path, what = "raw", n = fs::file_info(path)$size)
 }
 
+method(store_check_exist, FilesystemStore) <- function(store, keys) {
+  paths <- fs::path(store@root, keys)
+  fs::file_exists(paths)
+}
+
 # Write operations ---------------------------------------------------------
 method(store_set, FilesystemStore) <- function(store, key, value) {
   path <- fs::path(store@root, key)

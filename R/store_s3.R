@@ -3,7 +3,7 @@
 # Helpers ------------------------------------------------------------------
 
 s3_full_key <- function(store, key) {
-  if (nzchar(store@prefix)) paste0(store@prefix, key) else key
+  paste0(store@prefix, key)
 }
 
 s3_strip_prefix <- function(store, full_keys) {
@@ -77,6 +77,19 @@ method(store_get, S3Store) <- function(store, key) {
   )
   if (is.null(resp)) return(NULL)
   resp$Body
+}
+
+method(store_check_exist, S3Store) <- function(store, keys) {
+  full_keys <- s3_full_key(store, keys)
+  vapply(full_keys, function(full_key) {
+    tryCatch(
+      {
+        store@.client$head_object(Bucket = store@bucket, Key = full_key)
+        TRUE
+      },
+      error = function(e) FALSE
+    )
+  }, logical(1))
 }
 
 # Write operations ---------------------------------------------------------

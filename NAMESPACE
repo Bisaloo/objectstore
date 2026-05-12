@@ -3,6 +3,7 @@
 export(FilesystemStore)
 export(S3Store)
 export(Store)
+export(store_check_exist)
 export(store_erase)
 export(store_erase_prefix)
 export(store_erase_values)

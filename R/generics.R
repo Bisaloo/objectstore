@@ -21,6 +21,14 @@ Store <- new_class("Store", abstract = TRUE)
 #' @export
 store_get <- new_generic("store_get", "store")
 
+#' Check if a key exists in the store
+#' @param store A `ZarrStore` object.
+#' @param keys A character vector containing keys whose existence is to be checked.
+#' @returns A logical vector of the same length as `keys`, with `TRUE` if the
+#'   corresponding key exists in `store`, `FALSE` otherwise.
+#' @export
+store_check_exist <- new_generic("store_check_exist", "store")
+
 # Write operations ---------------------------------------------------------
 
 #' Store a (key, value) pair
